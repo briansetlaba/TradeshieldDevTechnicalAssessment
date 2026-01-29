@@ -8,6 +8,9 @@ public class LongestSentanceAnswer
         if (string.IsNullOrWhiteSpace(s))
         return 0;
 
-        return 0;
+        char[] delimitersForSentence = { '-', '?', '!' };
+        var sentences = s.Split(delimitersForSentence);
+
+        return sentences.Length;
     }
 }
