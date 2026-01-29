@@ -15,10 +15,10 @@ public class LongestSentanceAnswer
 
         foreach (var sentence in sentences)
         {
-            var words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (words.Length > wordCount)
+            var words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries).Count(w => w.Any(char.IsLetter));
+            if (words > wordCount)
             {
-                wordCount = words.Length;
+                wordCount = words;
             }
         }
 
