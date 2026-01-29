@@ -8,36 +8,55 @@ public class DeepestPitAnswer
         return -1;
 
         int deepest = -1;
+        int index = 0;
 
-        for (int i = 0; i < points.Length -1; i++)
+        while (index < points.Length - 1)
         {
-            if (points[i] > 0 && points[i] > points[i + 1])
+            if (IsPitStart(points, index))
             {
-                int p = i;
-                int q = i + 1;
+                int p = index;
+                int q = FindValley(points, p);
+                int r = FindBridge(points, q);
 
-                while (q + 1 < points.Length && points[q] > points[q + 1])
-                    q++;
-
-                int r = q;
-
-               while (r + 1 < points.Length && points[r] > points[q + 1])
-                    r++;
-
-               if(p < q && q < r)
-                { 
-                    int depth = Math.Min(points[p] - points[q], points[r] - points[q]);
-                    deepest = Math.Max(deepest, depth);
+                if (isValidPit(p, q, r))
+                {
+                    deepest = Math.Min(deepest, CalculateDepth(points, p, q, r);
                 }
-
-                i = r;
+                index = r;
             }
             else
             {
-                i++;
+                   index++;
             }
         }
 
         return deepest;
     }
+
+    private static bool IsValid(int[] points) => points == null || points.Length < 3;
+
+    private static bool IsPitStart(int[] points, int index) => points[index] > 0 && points[index] > points[index + 1];
+
+    private static int FindValley(int[] points, int start)
+    {
+        int i = start + 1;
+        while (i + 1 < points.Length && points[i] < points[i + 1])
+            i++;
+
+        return i;
+    }
+
+    private static int FindBridge(int[] points, int valley)
+    {
+        int i = valley;
+
+        while (i + 1 < points.Length && points[i] < points[i + 1]) i++;
+        return i;
+    }
+
+
+    private static bool isValidPit(int p, int q, int r) => p < q && q < r;
+
+    private static int CalculateDepth(int[] points, int p, int q, int r) => Math.Min(points[q], points[r]) - points[q])
+
 }
