@@ -3,25 +3,29 @@ namespace TS.TechnicalTest;
 
 public class LongestSentanceAnswer
 {
+     
+    private static readonly char[] SentenceDelimiters = { '-', '?', '!' };
     public static int Solution(string s)
     {
         if (string.IsNullOrWhiteSpace(s))
         return 0;
 
-        char[] delimitersForSentence = { '-', '?', '!' };
-        var sentences = s.Split(delimitersForSentence, StringSplitOptions.RemoveEmptyEntries);
+        return GetSentences(s).Select(CountWordsWhichAreValid).Max();
+    }
 
-        int wordCount = 0;
+    private static IEnumerable<string> GetSentences(string text)
+    {
+        return text.Split(SentenceDelimiters, StringSplitOptions.RemoveEmptyEntries);
 
-        foreach (var sentence in sentences)
-        {
-            var words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries).Count(w => w.Any(char.IsLetter));
-            if (words > wordCount)
-            {
-                wordCount = words;
-            }
-        }
+    }
 
-        return wordCount;
+    private static int CountWordsWhichAreValid(string sentence)
+    {
+        return sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries).Count(IsValidWord);
+    }
+
+    private static bool IsValidWord(string token)
+    {
+        return token.Any(char.IsLetter);
     }
 }
