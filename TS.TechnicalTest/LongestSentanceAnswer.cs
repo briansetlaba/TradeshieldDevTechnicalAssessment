@@ -9,8 +9,19 @@ public class LongestSentanceAnswer
         return 0;
 
         char[] delimitersForSentence = { '-', '?', '!' };
-        var sentences = s.Split(delimitersForSentence);
+        var sentences = s.Split(delimitersForSentence, StringSplitOptions.RemoveEmptyEntries);
 
-        return sentences.Length;
+        int wordCount = 0;
+
+        foreach (var sentence in sentences)
+        {
+            var words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length > wordCount)
+            {
+                wordCount = words.Length;
+            }
+        }
+
+        return wordCount;
     }
 }
