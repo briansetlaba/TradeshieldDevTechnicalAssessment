@@ -13,7 +13,13 @@ public class DeepestPitAnswer
         {
             if (points[i] > 0 && points[i] > points[i + 1])
             {
+                int p = i;
+                int q = i + 1;
 
+                while (q + 1 < points.Length && points[q] > points[q + 1])
+                {
+                    q++;
+                }
             }
         }
 
