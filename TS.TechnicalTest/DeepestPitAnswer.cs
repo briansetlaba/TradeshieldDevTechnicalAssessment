@@ -16,19 +16,25 @@ public class DeepestPitAnswer
                 int p = i;
                 int q = i + 1;
 
+                while (q + 1 < points.Length && points[q] > points[q + 1])
+                    q++;
+
                 int r = q;
 
-                while (q + 1 < points.Length && points[q] > points[q + 1])
-                {
+               while (r + 1 < points.Length && points[r] > points[q + 1])
                     r++;
-                }
 
-                if (r > q)
-                {
+               if(p < q && q < r)
+                { 
                     int depth = Math.Min(points[p] - points[q], points[r] - points[q]);
                     deepest = Math.Max(deepest, depth);
                 }
+
                 i = r;
+            }
+            else
+            {
+                i++;
             }
         }
 
