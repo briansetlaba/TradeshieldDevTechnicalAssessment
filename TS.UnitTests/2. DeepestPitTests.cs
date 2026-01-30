@@ -13,4 +13,26 @@ public class DeepestPitTests
 
         Assert.AreEqual(4, result);
     }
+
+    [TestMethod]
+    public void Q2_RepeatingAscendingDescending()
+    {
+        var points = new[] { 1, 2, 3, 1, 2, 3, 1, 2, 3 };
+
+        var result = DeepestPitAnswer.Solution(points);
+
+        Assert.AreEqual(2, result);
+
+    }
+
+    [TestMethod]
+    public void Q2_NoPitFound()
+    {
+        var points = new[] { 1, 2, 3, 4, 5};
+
+        var result = DeepestPitAnswer.Solution(points);
+
+        Assert.AreEqual(-1, result);
+
+    }
 }
