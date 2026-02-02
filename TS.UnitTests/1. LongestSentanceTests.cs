@@ -9,7 +9,7 @@ public class LongestSentanceTests
     public void Q1_BasicNominalTest()
     {
         var input = $"We test coders. Give us a try";
-        var outcome = LongestSentanceAnswer.Solution(input);
+        var outcome = LongestSentenceAnswer.Solution(input);
 
         Assert.AreEqual(4, outcome);
     }
@@ -17,9 +17,9 @@ public class LongestSentanceTests
     [TestMethod]
     public void Q1_MultiplePunctuationAndSingleLetterWords()
     {
-        var input = "Forget CVs... Sav time. x x";
+        var input = "Forget CVs... Save time. x x";
 
-        var outcome = LongestSentanceAnswer.Solution(input);
+        var outcome = LongestSentenceAnswer.Solution(input);
 
         Assert.AreEqual(2, outcome);
     }
